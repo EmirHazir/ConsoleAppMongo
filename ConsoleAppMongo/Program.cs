@@ -10,6 +10,21 @@ namespace ConsoleAppMongo
     {
         static void Main(string[] args)
         {
+            MainAsyc(args).GetAwaiter().GetResult();
+
+        }
+
+        static async Task MainAsyc(string[] args)
+        {
+            Product p = new Product();
+            p.ProductName = "raket";
+            p.Price = 15;
+            p.Stock = 200;
+
+            ProductRepository repository = new ProductRepository();
+
+            await repository.Insert(p);
+
         }
     }
 }
